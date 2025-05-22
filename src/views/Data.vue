@@ -44,12 +44,14 @@ const data = reactive({
   ],
   pageNum: 1,
   pageSize:5,
-  total: 8,
+  total: 55,
 })
 </script>
 
 <style scoped>
 .card {
-
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
 }
 </style>
