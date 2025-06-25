@@ -156,6 +156,7 @@ import lun1 from '@/assets/lun1.jpg'
 import lun2 from '@/assets/lun2.jpg'
 import lun3 from '@/assets/lun3.jpg'
 import router from '@/router/index.js'
+import request from "@/utils/request.js";
 const data = reactive({
   input: '签收单收到',
   t: '才能够共和国啊实打实大搜索根深蒂固手打干撒代发王企鹅啊实打实大师大师大沙发沙发沙发沙发问起过短发激发光',
@@ -181,8 +182,22 @@ const data = reactive({
     {id:7,date:'2025-05-15', name:'小王', address:'广东深圳'},
     {id:8,date:'2025-05-15', name:'小王', address:'广东深圳'}],
   dislogVisible: false,
-  row: null
+  row: null,
+  employeesList: [],
 })
+
+// 使用 request 对象发起一个 GET 请求到指定的 URL
+request.get('/employee/selectAll').then(res => {
+  // 请求成功后执行此回调函数，res 是服务器返回的数据
+  // 将响应结果打印到控制台，用于调试查看完整返回内容
+  console.log(res);
+  // 将服务器返回的数据部分（通常是 res.data）赋值给 data.employeesList
+  // 假设 data 是 Vue 组件中的 data 属性或类似的状态管理对象
+  data.employeesList = res.data;
+  // 打印赋值后的 employeesList 数据，确认数据是否正确接收和存储
+  console.log(data.employeesList);
+});
+
 const del = (id) => {
   alert("确定删除ID=" + id + "的数据？")
 }
