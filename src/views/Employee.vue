@@ -15,6 +15,11 @@
       <el-table :data="data.tableData" stripe @selection-change="handleSelectionChange" index="">
         <el-table-column type="selection" width="55"/>
         <el-table-column label="用户名" prop="username" />
+        <el-table-column label="头像">
+          <template #default="scope">
+            <img v-if="scope.row.avatar" :src="scope.row.avatar" alt="" style="display:block; width: 40px; height: 40px; border-radius: 50%" />
+          </template>
+        </el-table-column>
         <el-table-column label="姓名" prop="name" />
         <el-table-column label="性别" prop="sex" />
         <el-table-column label="工号" prop="no" />
@@ -44,7 +49,16 @@
     <el-dialog v-model="data.formVisible" title="编辑员工信息" width="500" destroy-on-close>
       <el-form ref="formRef" :rules="data.rules" :model="data.form" style="padding-right: 40px; padding-top: 20px" label-width="80px">
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="data.form.username" autocomplete="off" placeholder="请输入用户名"/>
+          <el-input :disabled="data.form.id" v-model="data.form.username" autocomplete="off" placeholder="请输入用户名"/>
+        </el-form-item>
+        <el-form-item label="头像">
+        <el-upload
+            action="http://localhost:9090/files/upload"
+            list-type="picture"
+            :on-success="handleAvatarSuccess"
+        >
+          <el-button type="primary">上传头像</el-button>
+        </el-upload>
         </el-form-item>
         <el-form-item label="姓名" prop="name">
           <el-input v-model="data.form.name" autocomplete="off" placeholder="请输入姓名"/>
@@ -80,6 +94,10 @@ import {reactive,ref} from "vue";
 import {Delete, Edit, Search} from "@element-plus/icons-vue";
 import request from "@/utils/request.js";
 import {ElMessage, ElMessageBox} from "element-plus";
+
+const handleAvatarSuccess = (res) => {
+  data.form.avatar = res.data
+}
 
 const data = reactive({
   name: null,
