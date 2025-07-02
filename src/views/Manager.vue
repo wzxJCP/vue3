@@ -31,6 +31,10 @@
             <el-icon><Document /></el-icon>
             文章管理
           </el-menu-item>
+          <el-menu-item index="/manager/department">
+            <el-icon><OfficeBuilding /></el-icon>
+            部门管理
+          </el-menu-item>
           <!-- <el-sub-menu index="1"> 默认展开，↓替换下测试 -->
           <el-sub-menu index="">
             <template #title>
@@ -70,7 +74,7 @@
 </template>
 
 <script setup>
-import {DataAnalysis, Document, House, SoldOut, UserFilled} from "@element-plus/icons-vue";
+import {DataAnalysis, Document, House, OfficeBuilding, SoldOut, UserFilled} from "@element-plus/icons-vue";
 import router from "@/router/index.js";
 import { reactive,ref } from "vue";
 import Password from "@/views/Password.vue";
