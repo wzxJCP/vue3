@@ -67,7 +67,7 @@ export default {
       updateLog: [
         {
           version: 'v1.8.1',
-          date: '2025-07-01',
+          date: '2025-05-01',
           details: '所有模块功能均已实现，后续如发现Bug将第一时间修复。'
         },
       ]
